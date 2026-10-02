@@ -1,4 +1,4 @@
-// Farmers Friend Website JavaScript
+// Alffi Website JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Navigation Toggle

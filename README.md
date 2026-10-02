@@ -1,6 +1,6 @@
-# Farmers Friend Website
+# Alffi Website
 
-Marketing website for the Farmers Friend iOS app.
+Marketing website for the Alffi iOS app (formerly Farmers Friend).
 
 ## Structure
 
