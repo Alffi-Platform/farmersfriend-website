@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How a broken V-belt on our irrigation pump led us to build a service-parts inventory just by talking to Alffi.">
+    <title>The Day the Pump Belts Let Go - Alffi</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/app-icon.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="images/app-icon.png" alt="Alffi" class="logo-icon">
+                <span>Alffi</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="pricing.html" class="nav-link">Pricing</a></li>
+                <li><a href="stories.html" class="nav-link active">Stories</a></li>
+                <li><a href="support.html" class="nav-link">Support</a></li>
+                <li><a href="index.html#download" class="nav-link btn-download">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Story Header -->
+    <section class="page-header story-header">
+        <div class="container">
+            <div class="story-kicker">Farm Story &middot; Equipment &amp; Service Parts</div>
+            <h1>The Day the Pump Belts Let Go</h1>
+            <p>How a snapped set of V-belts on our irrigation pump turned into a service-parts inventory &mdash; built entirely by talking to Alffi.</p>
+        </div>
+    </section>
+
+    <article class="story">
+        <div class="story-container">
+
+            <figure class="story-figure">
+                <img src="images/stories/irrigation-pump-unit.jpg" alt="Diesel-driven Southern Cross irrigation pump on a galvanised skid beside the creek" loading="lazy">
+                <figcaption>Our diesel irrigation pump set down by the creek &mdash; a Southern Cross centrifugal pump belt-driven from an air-cooled diesel.</figcaption>
+            </figure>
+
+            <h2>When the water stops</h2>
+            <p>Anyone who irrigates knows the feeling. The pump is running, the water should be moving, and then it isn&rsquo;t. On our creek pump the culprit was simple: the V-belts between the diesel and the Southern Cross pump had given up.</p>
+            <p>The drive is a multi-groove pulley running a matched set of B-section belts. When one goes, you replace the lot &mdash; and until you do, nothing gets watered.</p>
+
+            <figure class="story-figure">
+                <img src="images/stories/pump-belt-drive.jpg" alt="Close-up of the multi-groove pulley on the Southern Cross pump shaft and the engine clutch housing" loading="lazy">
+                <figcaption>The belt drive: multi-groove pulley on the pump shaft, lined up to the engine&rsquo;s clutch pulley.</figcaption>
+            </figure>
+
+            <p>So it was into town to Motion Australia at Beresfield for a set of six <strong>B50FEN</strong> V-belts. Belts fitted, pump running again, water back on.</p>
+
+            <p>Driving home with the invoice on the seat, the obvious question came up: <em>why don&rsquo;t we have a record of this?</em> Which belts does that pump take? When did we last change them? How many spares are in the shed? Who did we buy them from, and what did they cost? Next time it happens we shouldn&rsquo;t be crawling under the pump reading part numbers off a worn belt.</p>
+
+            <p class="story-lead">So we decided to track service parts and inventory in Alffi. And rather than build forms, we just asked for it.</p>
+
+            <h2>Step 1 &mdash; Describe it, and let Alffi build the entity</h2>
+            <p>Alffi lets you create your own record types. Instead of adding fields one at a time, we described what we wanted in plain English:</p>
+
+            <div class="chat">
+                <div class="chat-msg user">
+                    <div class="chat-who">Us</div>
+                    <p>A service part record for farm equipment maintenance. Capture: part name, part number, manufacturer, supplier, equipment type as a dropdown (Attachment, Farm Vehicle, Irrigator, Machinery, Pump Engine, Seeder, Sprayer, Spreader, Utility Plant), the specific equipment it fits, quantity on hand, reorder level, unit cost, service interval in hours, date last replaced, and notes. Each part can have many purchase records (date, quantity, supplier, cost).</p>
+                </div>
+            </div>
+
+            <div class="story-split">
+                <div>
+                    <p>Alffi came back with a proposed schema to review before anything was saved:</p>
+                    <ul class="story-list">
+                        <li><strong>A Service Part entity</strong> with part name, part number, manufacturer, stock on hand, reorder level, unit cost, service interval (hours), date last replaced and notes.</li>
+                        <li><strong>A Supplier relation</strong> linked to our existing Supplier records &mdash; not a free-text box.</li>
+                        <li><strong>An Equipment Type dropdown</strong> with exactly the nine options we listed.</li>
+                        <li><strong>A filtered Equipment relation</strong> &mdash; pick &ldquo;Pump Engine&rdquo; and you only see pump engines. Alffi worked that out on its own.</li>
+                        <li><strong>A Part Purchase Record child entity</strong> because it spotted the one-to-many: one part, many purchases, each with date, quantity, supplier and cost.</li>
+                    </ul>
+                    <p>Every field had a checkbox. We looked it over, kept the lot, and hit <em>Create selected fields</em>. A complete inventory structure in under a minute.</p>
+                </div>
+                <figure class="story-figure story-figure-narrow">
+                    <img src="images/stories/service-parts-schema.png" alt="Alffi's proposed schema for the Service Part entity type, with a Part Purchase Record child entity" loading="lazy">
+                    <figcaption>Alffi&rsquo;s proposed schema, ready to review.</figcaption>
+                </figure>
+            </div>
+
+            <h2>Step 2 &mdash; Set up the supplier from the invoice</h2>
+            <p>Next we dropped the Motion tax invoice PDF into the conversation and asked Alffi to set Motion up as a supplier.</p>
+
+            <div class="chat">
+                <div class="chat-msg user">
+                    <div class="chat-who">Us</div>
+                    <p>Set up Motion as a supplier. <span class="chat-attachment">Tax Invoice - Motion Aust.pdf</span></p>
+                </div>
+                <div class="chat-msg alffi">
+                    <div class="chat-who">Alffi</div>
+                    <p>Before we get into it &mdash; has the kill sheet come back from AD Meats yet for the batch dispatched on 21 September? It&rsquo;s due by 5 October.</p>
+                    <p>On to Motion &mdash; no Motion record exists yet, so I&rsquo;ll create one. The invoice gives me their name and ABN, but the Supplier type requires address, suburb, postcode, state and phone &mdash; none of which are on the invoice. Could you give me those?</p>
+                </div>
+                <div class="chat-msg user">
+                    <div class="chat-who">Us</div>
+                    <p>Unit 1, 2 Canavan Drive, Beresfield, NSW 2322<br>phone 02 4968 4000</p>
+                </div>
+                <div class="chat-msg alffi">
+                    <div class="chat-who">Alffi</div>
+                    <p>All six required fields are covered. The card is ready to review &mdash; approve it to save the record.</p>
+                    <div class="chat-card">
+                        <div class="chat-card-title">Add Supplier <span class="chat-card-status">Recorded</span></div>
+                        <dl>
+                            <dt>Supplier Name</dt><dd>Motion Australia Pty Ltd</dd>
+                            <dt>Address</dt><dd>Unit 1, 2 Canavan Drive</dd>
+                            <dt>Suburb</dt><dd>Beresfield</dd>
+                            <dt>Post Code</dt><dd>2322</dd>
+                            <dt>State</dt><dd>NSW</dd>
+                            <dt>Phone</dt><dd>02 4968 4000</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <p>Two things stood out. First, Alffi checked for an existing Motion record before creating a duplicate. Second, it wouldn&rsquo;t guess &mdash; the invoice didn&rsquo;t have the address or phone, so it asked. And it still found time to remind us about an overdue kill sheet from a completely different part of the farm.</p>
+
+            <h2>Step 3 &mdash; Record the invoice</h2>
+
+            <div class="chat">
+                <div class="chat-msg user">
+                    <div class="chat-who">Us</div>
+                    <p>OK record the invoice</p>
+                </div>
+                <div class="chat-msg alffi">
+                    <div class="chat-who">Alffi</div>
+                    <p>The B50FEN part is already in your catalogue. I&rsquo;ll add a Part Purchase Record under it: 6 &times; B50FEN V-belts from Motion Australia Pty Ltd, 25 Sep 2026, $83.46 ex GST.</p>
+                    <p>The $1.10 credit card surcharge is a fee, not a part &mdash; want me to record that as a cost against the pump engine, or skip it?</p>
+                    <div class="chat-card">
+                        <div class="chat-card-title">Add Part Purchase Record <span class="chat-card-status">Recorded</span></div>
+                        <div class="chat-card-under">Under: B50FEN</div>
+                        <dl>
+                            <dt>Purchase Date</dt><dd>2026-09-25</dd>
+                            <dt>Quantity</dt><dd>6</dd>
+                            <dt>Supplier</dt><dd>Motion Australia Pty Ltd</dd>
+                            <dt>Cost</dt><dd>$83.46</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <p>Alffi read the line items off the PDF, matched part number B50FEN to the part already in our catalogue, linked the purchase to the supplier it had just created, and set the credit card surcharge aside instead of pretending it was a part.</p>
+
+            <h2>What we have now</h2>
+            <div class="story-outcomes">
+                <div class="story-outcome">
+                    <strong>A service parts catalogue</strong>
+                    <span>Every part tied to the equipment it fits, with stock on hand and a reorder level.</span>
+                </div>
+                <div class="story-outcome">
+                    <strong>Purchase history</strong>
+                    <span>What we paid, when and from whom &mdash; for every part.</span>
+                </div>
+                <div class="story-outcome">
+                    <strong>Suppliers on file</strong>
+                    <span>Motion&rsquo;s details ready for the next order.</span>
+                </div>
+                <div class="story-outcome">
+                    <strong>Zero forms built</strong>
+                    <span>The entity, the supplier and the invoice were all done in conversation.</span>
+                </div>
+            </div>
+
+            <p>Next time the belts go on the creek pump, we won&rsquo;t be reading numbers off a shredded belt. We&rsquo;ll open the pump engine in Alffi, see <strong>B50FEN</strong>, see how many are on the shelf, and see who we bought them from last time and what they cost.</p>
+
+            <blockquote class="story-quote">
+                A broken belt cost us an afternoon. Setting up the whole service-parts system cost us three messages.
+            </blockquote>
+
+            <div class="story-cta">
+                <h3>Try it on your own farm</h3>
+                <p>Describe what you want to track and let Alffi build it for you.</p>
+                <a href="index.html#download" class="btn btn-primary">Download Alffi</a>
+                <a href="features.html" class="btn btn-secondary">See all features</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/app-icon.png" alt="Alffi" class="footer-logo">
+                    <p>Farm management made simple.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="features.html">Features</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="stories.html">Stories</a></li>
+                            <li><a href="index.html#download">Download</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="support.html">Help Centre</a></li>
+                            <li><a href="support.html#contact">Contact Us</a></li>
+                            <li><a href="support.html#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="terms.html">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Alffi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
